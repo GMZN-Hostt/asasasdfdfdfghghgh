@@ -473,8 +473,8 @@ client.on('message' , message => {
  .setDescription("الدعم الفني" + `
  **
 سيرفر الدعم الفني |
-https://discord.gg/hUMwkVz
- **
+https://discord.gg/quyK7qq
+**
 `);
   message.author.sendEmbed(embed);
    }
