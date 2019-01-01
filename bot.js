@@ -172,12 +172,12 @@ client.on('ready', function(){
 
 //نهاية كود تغير الحالة كل شوي
 
-//client.on("ready", () => {
-  //function arabecodes() {
-    //client.guilds.get('523924649055223817').roles.find("name", "DISCO").setColor("RANDOM");
-  //}
-  //setInterval(arabecodes, 1700);
-//})
+client.on("ready", () => {
+  function arabecodes() {
+    client.guilds.get('523924649055223817').roles.find("name", "RUN").setColor("RANDOM");
+  }
+  setInterval(arabecodes, 1500);
+})
 
 
 //----------
