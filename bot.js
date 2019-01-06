@@ -43,6 +43,36 @@ client.on('ready', () => {
 });
 
 
+//الردود التلقائي
+
+client.on('message', msg => {
+  if (msg.content === 'السلام عليكم') {
+    msg.reply('وعليكم السلام ورحمة الله تعالى وبركاته :heart:');
+  }
+});
+
+
+client.on('message', msg => {
+  if (msg.content === 'باك') {
+    msg.reply('ولكم ياقلبي  :heartpulse: ');
+  }
+});
+
+
+client.on('message', msg => {
+  if (msg.content === 'هلا') {
+    msg.reply(':heart:هلا بيك ياعمري منورنا:heart:');
+  }
+});
+
+client.on('message', msg => {
+  if (msg.content === 'باي') {
+    msg.reply(':heart: باي نشوفك بعدين :heart:');
+  }
+});
+
+
+
 //كود ساي يعمل ب ايدي حقي فقطط
 
 client.on('message', message => {
