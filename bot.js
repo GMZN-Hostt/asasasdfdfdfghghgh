@@ -556,14 +556,15 @@ if (message.content === "*help") {
 
 **الأوامر العامة :**
 
-** *suggest ~ يمكنك ارسال اقتراح  من هذا الامر**
-** *id ~ يجيب لك معلومات حسابك**
-** *server ~يعرض لك معلومات عن السيرفر**
-** *avatar ~ لعرض صورتك او صورة حد تمنشنو**
-** *time ~ لمعرفة الساعه في مكه المكرمه او مصر او الامارات**
-** *new ~ لعمل روم مساعده او استفسار مبينك انت والادمنيه**
-** *draw ~ لرسم اي شئ تكتبة**
-** اكتب اسم اي بلد يطلع لك علمها**
+**:globe_with_meridians: *suggest ~ يمكنك ارسال اقتراح  من هذا الامر**
+**:globe_with_meridians: *id ~ يجيب لك معلومات حسابك**
+**:globe_with_meridians: *server ~يعرض لك معلومات عن السيرفر**
+**:globe_with_meridians: *avatar ~ لعرض صورتك او صورة حد تمنشنو**
+**:globe_with_meridians: *time ~ لمعرفة الساعه في مكه المكرمه او مصر او الامارات**
+**:globe_with_meridians: *new ~ لعمل روم مساعده او استفسار مبينك انت والادمنيه**
+**:globe_with_meridians: *draw ~ لرسم اي شئ تكتبة**
+**:globe_with_meridians: *bans ~ لمعرفة عدد الأشخاص المبندة من السيرفر**
+**:globe_with_meridians: اكتب اسم اي بلد يطلع لك علمها**
 
 **الأوامر الأدارية :**
 
@@ -605,7 +606,7 @@ __**Copyright © GMZN Host**__
 client.on('message', message => {
     if (message.content.startsWith("*bans")) {
         message.guild.fetchBans()
-        .then(bans => message.channel.send(`${bans.size} عدد اشخاص المبندة من السيرفر `))
+        .then(bans => message.channel.send(`**[ ${bans.size} ] عدد اشخاص المبندة من السيرفر **`))
   .catch(console.error);
 }
 });
@@ -661,7 +662,6 @@ client.on('message', message => {
 //كود الايدي الهو المعلومات الشخصيه
  
 client.on('message', message => {
-  var prefix = "*"
 var args = message.content.split(" ").slice(1);    
 if(message.content.startsWith(prefix + '*id')) {
 var year = message.author.createdAt.getFullYear()
