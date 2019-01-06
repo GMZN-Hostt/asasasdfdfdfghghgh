@@ -663,8 +663,9 @@ client.on('message', message => {
 //كود الايدي الهو المعلومات الشخصيه
  
 client.on('message', message => {
+  var prefix = "*"
 var args = message.content.split(" ").slice(1);    
-if(message.content.startsWith(prefix + '*id')) {
+if(message.content.startsWith(prefix + 'id')) {
 var year = message.author.createdAt.getFullYear()
 var month = message.author.createdAt.getMonth()
 var day = message.author.createdAt.getDate()
@@ -696,9 +697,14 @@ let embed = new Discord.RichEmbed()
 .addField('🔱| اسمك:',`**<@` + `${z.id}` + `>**`, true)
 .addField('🛡| ايدي:', "**"+ `${z.id}` +"**",true)
 .addField('♨| Playing:','**'+y+'**' , true)
-.addField('📛| التاق حق حسابك:',"**#" +  `${z.discriminator}**`,true)
+.addField('🤖| نوع حسابك:',"**"+ w + "**",true)    
+.addField('📛| الكود حق حسابك:',"**#" +  `${z.discriminator}**`,true)
+.addField('**التاريح الذي انشئ فيه حسابك | 📆 **: ' ,year + "-"+ month +"-"+ day)    
 .addField("**تاريخ دخولك للسيرفر| ⌚   :**", message.member.joinedAt.toLocaleString())    
-.addField('**⌚ | تاريخ انشاء حسابك الكامل:**', message.author.createdAt.toLocaleString()) 
+ 
+.addField('**⌚ | تاريخ انشاء حسابك الكامل:**', message.author.createdAt.toLocaleString())
+.addField("**اخر رسالة لك | 💬  :**", message.author.lastMessage)            
+ 
 .setThumbnail(`${z.avatarURL}`)
 .setFooter(message.author.username, message.author.avatarURL)
  
