@@ -587,29 +587,29 @@ if (message.content === "*help") {
 
 **الأوامر العامة :globe_with_meridians: :**
 
-**:globe_with_meridians: *suggest ~ يمكنك ارسال اقتراح  من هذا الامر**
+**:globe_with_meridians: *suggest <Suggestion> ~ يمكنك ارسال اقتراح  من هذا الامر**
 **:globe_with_meridians: *id ~ يجيب لك معلومات حسابك**
 **:globe_with_meridians: *server ~يعرض لك معلومات عن السيرفر**
 **:globe_with_meridians: *avatar ~ لعرض صورتك او صورة حد تمنشنو**
 **:globe_with_meridians: *time ~ لمعرفة الساعه في مكه المكرمه او مصر او الامارات**
 **:globe_with_meridians: *new ~ لعمل روم مساعده او استفسار مبينك انت والادمنيه**
-**:globe_with_meridians: *draw ~ لرسم اي شئ تكتبة**
+**:globe_with_meridians: *draw <Message> ~ لرسم اي شئ تكتبة**
 **:globe_with_meridians: *bans ~ لمعرفة عدد الأشخاص المبندة من السيرفر**
 **:globe_with_meridians: اكتب اسم اي بلد يطلع لك علمها**
 
 **الأوامر الأدارية :tools: :**
 
-**:tools: *bc ~ لعمل برودكاست لأعضاء السيرفر**
-**:tools: *nbc ~ برودكاست او رسالة ل اعضاء السيرفر مع منشن فقط**
-**:tools: *clear ~ لمسح الرسايل ب العدد**
-**:tools: *kick ~ ل طرد احد من السيرفر**
-**:tools: *ban ~ ل تبنيد احد من السيرفر**
-**:tools: *mute ~ لعمل ميوت كتابي لحد**
-**:tools: *unmute ~ لفك الميوت الكتابي**
+**:tools: *bc <message> ~ لعمل برودكاست لأعضاء السيرفر**
+**:tools: *nbc <message> ~ برودكاست او رسالة ل اعضاء السيرفر مع منشن فقط**
+**:tools: *clear <Number> ~ لمسح الرسايل ب العدد**
+**:tools: *kick <@mention> ~ ل طرد احد من السيرفر**
+**:tools: *ban <@mention> ~ ل تبنيد احد من السيرفر**
+**:tools: *mute <@mention> <Reason> ~ لعمل ميوت كتابي لحد**
+**:tools: *unmute <@mention> ~ لفك الميوت الكتابي**
 **:tools: *cchat ~ ل تقفيل الشات**
-**:tools: *unchat ~ ل فك تقفيل الشات**
-**:tools: *role ~ ل اعطاء احد رتبه**
-**:tools: *send ~ ل عمل تصويت ب روم محدد**
+**:tools: *unchat ~ ل فتح الشات**
+**:tools: *role <@mention> <@role> ~ ل اعطاء احد رتبه**
+**:tools: *voto <#room> <message> ~ ل عمل تصويت ب روم محدد**
 **:tools: *setVoice ~ ل تفعيل خاصية الفويس اون لاين**
 
 **اخري :gear: :**
@@ -957,7 +957,7 @@ if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('لي�
 client.on('message' , message => {
   var prefix = "*";
   if(message.author.bot) return;
-  if(message.content.startsWith(prefix + "send")) {
+  if(message.content.startsWith(prefix + "voto")) {
   if(!message.member.hasPermission('ADMINISTRATOR')) return      message.channel.send('**للأسف لا تمتلك صلاحية** `ADMINISTRATOR`' );
     let args = message.content.split(" ").slice(1);
  
