@@ -12,6 +12,7 @@ const UserBlocked = new Set();
 const prefix = '*'
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
+  client.user.setActivity("Say : *help // *invite ∾", {type: 'PLAYING'});
   console.log('')
   console.log('')
   console.log('╔[═════════════════════════════════════════════════════════════════]╗')
@@ -150,25 +151,25 @@ client.on('message', message => {
 
 // بداية كود تغير الحالة كل شوي استريمنج
 
-client.on('ready', function(){
-    var ms = 7000;
-    var setGame = [`©GMZN Host`,'Say : *help || *invite','Say : *help || *invite'];
-    var i = -1;
-    var j = 0;
-    setInterval(function (){
-        if( i == -1 ){
-            j = 1;
-        }
-        if( i == (setGame.length)-1 ){
-            j = -1;
-        }
-        i = i+j;
-       client.user.setGame(setGame[i],`http://www.twitch.tv/idk`);
-    }, ms);
+//client.on('ready', function(){
+  //  var ms = 7000;
+  //  var setGame = [`©GMZN Host`,'Say : *help || *invite','Say : *help || *invite'];
+  //  var i = -1;
+  //  var j = 0;
+  //  setInterval(function (){
+  //      if( i == -1 ){
+  //          j = 1;
+  //      }
+  //      if( i == (setGame.length)-1 ){
+  //          j = -1;
+  //      }
+  //      i = i+j;
+  //     client.user.setGame(setGame[i],`http://www.twitch.tv/idk`);
+  //  }, ms);
  
  
  
-})
+//})
 
 //نهاية كود تغير الحالة كل شوي
 
@@ -606,7 +607,7 @@ __**Copyright © GMZN Host**__
 client.on('message', message => {
     if (message.content.startsWith("*bans")) {
         message.guild.fetchBans()
-        .then(bans => message.channel.send(`**[ ${bans.size} ] عدد اشخاص المبندة من السيرفر **`))
+        .then(bans => message.channel.send(`**[ ${bans.size} ] عدد الأشخاص المبندة من السيرفر **`))
   .catch(console.error);
 }
 });
