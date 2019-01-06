@@ -600,6 +600,18 @@ __**Copyright © GMZN Host**__
 
  //------------------------------------------------------------
 
+//بداية كود اليجيب لك عدد الاعضاء المبنده من السيرفر
+ 
+client.on('message', message => {
+    if (message.content.startsWith("*bans")) {
+        message.guild.fetchBans()
+        .then(bans => message.channel.send(`${bans.size} عدد اشخاص المبندة من السيرفر `))
+  .catch(console.error);
+}
+});
+ 
+//نهاية كود اليجيب لك عدد الاعضاء المبنده من السيرفر
+
  //-------------------------
 
  
@@ -651,7 +663,7 @@ client.on('message', message => {
 client.on('message', message => {
   var prefix = "*"
 var args = message.content.split(" ").slice(1);    
-if(message.content.startsWith(prefix + 'id')) {
+if(message.content.startsWith(prefix + '*id')) {
 var year = message.author.createdAt.getFullYear()
 var month = message.author.createdAt.getMonth()
 var day = message.author.createdAt.getDate()
