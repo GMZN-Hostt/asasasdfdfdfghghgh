@@ -569,8 +569,9 @@ if (message.content === "*help") {
 
 **الأوامر الأدارية :**
 
-** *bc ~ لعمل برودكاست لأعضاء السيرفر**
-** *nbc ~ ل ارسال رساله لاعضاء السيرفر  بس غير مطور فقط الكلام**
+** *1bc ~ لعمل برودكاست لأعضاء السيرفر**
+** *2bc ~ ل ارسال رساله لاعضاء السيرفر  بس غير مطور فقط الكلام**
+** *3bc ~ برودكاست او رسالة ل اعضاء السيرفر مع منشن فقط**
 ** *clear ~ لمسح الرسايل ب العدد**
 ** *kick ~ ل طرد احد من السيرفر**
 ** *ban ~ ل تبنيد احد من السيرفر**
@@ -790,7 +791,7 @@ client.on('message', msg => {
 client.on('message', message => {
         var prefix = "*";
               if(!message.channel.guild) return;
-    if(message.content.startsWith(prefix + 'bc')) {
+    if(message.content.startsWith(prefix + '1bc')) {
     if(!message.channel.guild) return message.channel.send('**هذا الأمر فقط للسيرفرات**').then(m => m.delete(5000));
   if(!message.member.hasPermission('ADMINISTRATOR')) return      message.channel.send('**للأسف لا تمتلك صلاحية** `ADMINISTRATOR`' );
     let args = message.content.split(" ").join(" ").slice(2 + prefix.length);
@@ -836,7 +837,7 @@ client.on('message', message => {
 client.on('message', message => {
             if(!message.channel.guild) return;
 let args = message.content.split(' ').slice(1).join(' ');
-if (message.content.startsWith('*nbc')){
+if (message.content.startsWith('*2bc')){
  if(!message.author.id === '') return;
   if(!message.member.hasPermission('ADMINISTRATOR')) return      message.channel.send('**للأسف لا تمتلك صلاحية** `ADMINISTRATOR`' );
 message.channel.sendMessage('جار ارسال الرسالة |:white_check_mark:')
@@ -845,6 +846,23 @@ m.sendMessage(args)
 })
 }
 });
+
+//كود البرودكاست مع منشن
+
+client.on("message", message => {
+
+if (message.content.startsWith('*3bc')){
+if (!message.member.hasPermission("ADMINISTRATOR"))  return;
+  let args = message.content.split(" ").slice(1);
+  var argresult = args.join(' '); 
+  message.guild.members.filter(m => m.presence.status !== 'all').forEach(m => {
+ m.send(`${argresult}\n ${m}`);
+})
+ message.channel.send(`\`${message.guild.members.filter(m => m.presence.status !== 'all').size}\` **: عدد الاعضاء المستلمين**`); 
+ message.delete(); 
+};     
+});
+
  
 //كود تغير البلاينج و الصوره والاسم
  
