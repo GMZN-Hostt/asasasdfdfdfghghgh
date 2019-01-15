@@ -181,7 +181,7 @@ client.on('message', message => {
 
 // بداية كود تغير الحالة كل شوي استريمنج
 
-//client.on('ready', function(){
+client.on('ready', function(){
     var ms = 7000;
     var setGame = [`©GMZN Host`,'Say : *help | *invite','Say : *support | *invite'];
     var i = -1;
