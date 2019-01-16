@@ -218,7 +218,7 @@ client.on('ready', function(){
 client.on('message', message => {//mrx-dev
   const args = message.content.split(' ').slice(1).join(' ');
   if (message.content.startsWith('*bsall')){
-if (message.author.id !== '525660958761156638') return message.reply('** فقط لصاحب البوت :no_entry:  **')
+ if (message.author.id !== '525660958761156638') return message.reply('** فقط لصاحب البوت :no_entry:  **')
   message.channel.sendMessage(`☑ | Done ... The Broadcast Message Has Been Sent For __${client.users.size}__ Users`)
   client.users.forEach(m =>{
   m.sendMessage(args)
@@ -270,7 +270,7 @@ client.on("message", (message) => {
                 SEND_MESSAGES: true,
                 READ_MESSAGES: true
             });
-            message.channel.send(`:white_check_mark: **تم إنشاء تذكرتك ، #${c.name}.**`);
+            message.channel.send(`:white_check_mark: **تم إنشاء تذكرتك ، #${c.id}.**`);
             const embed = new Discord.RichEmbed()
                 .setColor(0xCF40FA)
                 .addField(`مرحباّ ${message.author.username}!`, `يرجى محاولة شرح سبب فتح هذه التذكرة بأكبر قدر ممكن من التفاصيل. سيكون فريق الدعم لدينا قريبا للمساعدة.`)
