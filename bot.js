@@ -57,10 +57,10 @@ hours = currentTime.getHours() + 3 ,
 minutes = currentTime.getMinutes(),
 done = currentTime.getMinutes() + duration / 60000 ,
 seconds = currentTime.getSeconds();
-if (minutes < 10) {//Narox
+if (minutes < 10) {
 minutes = "0" + minutes;
 }
-var suffix = "AM";//Narox
+var suffix = "AM";
 if (hours >= 12) {
 suffix = "PM";
 hours = hours - 12;
