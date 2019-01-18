@@ -6,7 +6,6 @@ const { Client, Util } = require('discord.js');
 const getYoutubeID = require('get-youtube-id');
 const fetchVideoInfo = require('youtube-info');
 const YouTube = require('simple-youtube-api');
-const antispam = require("discord-anti-spam");
 const youtube = new YouTube("AIzaSyAdORXg7UZUo7sePv97JyoDqtQVi3Ll0b8");
 const queue = new Map();
 const UserBlocked = new Set();
@@ -757,7 +756,6 @@ if (message.content === "*help") {
 
 ** لتفعيل خاصية الشكاوي او الريبورتات قوم ب عمل روم ب اسم reports**
 
-** يوجد مضاد سبام في البوت للمخربين**
 
 **معلومات البوت :robot: :**
 
@@ -927,34 +925,7 @@ client.on('message', message => {
 }
 });
 
-//مضاد السبام
 
-var anti_spam = require("discord-anti-spam");
- 
-anti_spam(bot, {
-  warnBuffer: 7,  //MHSTR
-  maxBuffer: 8,  //MHSTR
-  interval: 1000,  //MHSTR
-  warningMessage: "**سيتم طردك إن لم توقف سبام**",  //MHSTR
-  banMessage: "تم الطرد بسبب السبام",  //MHSTR
-  maxDuplicatesWarning: 7, //NAROX
-  maxDuplicatesBan: 10  //NAROX
-});
- 
-bot.login(process.env.BOT_SPAM);
- 
-const bot1 = new Discord.Client();
- 
- var anti_spam1 = require("discord-anti-spam");
-anti_spam1(bot1, {
-  warnBuffer: 7,  //@N.C™ » MHSTR#1119  //// حقوق مهستر
-  maxBuffer: 8,  //@N.C™ » MHSTR#1119
-  interval: 1000, //@N.C™ » MHSTR#1119
-  warningMessage: "**سيتم طردك إن لم توقف سبام**",  //NAROX codes
-  banMessage: "تم الطرد بسبب السبام",  //NAROX codes
-  maxDuplicatesWarning: 7,  //NAROX codes
-  maxDuplicatesBan: 10  //MHSTR
-});
  
 //بعض الاكواد الاداريه اولهم كود مسح الشات
  
