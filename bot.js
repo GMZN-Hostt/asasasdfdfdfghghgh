@@ -42,6 +42,99 @@ client.on('ready', () => {
   console.log('')
 });
 
+
+//giveaway
+
+var prefix = "*"//بيرفكس حق بوتك
+const moment = require('moment');
+client.on('message',async message => {//Narox
+  var time = moment().format('Do MMMM YYYY , hh:mm');
+  var room;
+  var title;
+  var duration;
+  var gMembers;
+  var currentTime = new Date(),//Narox
+hours = currentTime.getHours() + 3 ,
+minutes = currentTime.getMinutes(),
+done = currentTime.getMinutes() + duration / 60000 ,
+seconds = currentTime.getSeconds();
+if (minutes < 10) {//Narox
+minutes = "0" + minutes;
+}
+var suffix = "AM";//Narox
+if (hours >= 12) {
+suffix = "PM";
+hours = hours - 12;
+}
+if (hours == 0) {
+hours = 12;//Narox
+}
+ 
+  var filter = m => m.author.id === message.author.id;//Narox
+  if(message.content.startsWith(prefix + "giveaway")) {
+ 
+    if(!message.guild.member(message.author).hasPermission('MANAGE_GUILD')) return message.channel.send(':heavy_multiplication_x:| **يجب أن يكون لديك خاصية التعديل على السيرفر**');
+    message.channel.send(`:eight_pointed_black_star:| **Send Name channel For the Giveaway**`).then(msg => {
+      message.channel.awaitMessages(filter, {//Narox
+        max: 1,//Narox
+        time: 20000,
+        errors: ['time']
+      }).then(collected => {//Narox
+        let room = message.guild.channels.find('name' , collected.first().content);//Narox
+        if(!room) return message.channel.send(':heavy_multiplication_x:| **i Found It :(**');//Narox
+        room = collected.first().content;
+        collected.first().delete();//Narox
+        msg.edit(':eight_pointed_black_star:| **Time For The Giveaway**').then(msg => {
+          message.channel.awaitMessages(filter, {
+            max: 1,
+            time: 20000,//Narox
+            errors: ['time']
+          }).then(collected => {//Narox
+            if(isNaN(collected.first().content)) return message.channel.send(':heavy_multiplication_x:| **The Time Be Nambers `` Do the Commend Agin``**');
+            duration = collected.first().content * 60000;
+            collected.first().delete();//Narox
+            msg.edit(':eight_pointed_black_star:| **Now send The Present **').then(msg => {
+              message.channel.awaitMessages(filter, {
+                max: 1,
+                time: 20000,//Narox
+                errors: ['time']
+              }).then(collected => {//Narox
+                title = collected.first().content;
+                collected.first().delete();
+                msg.delete();
+                message.delete();
+                try {
+                  let giveEmbed = new Discord.RichEmbed()
+                  .setDescription(`**${title}** \nReact With 🎉 To Enter! \nTime remaining : ${duration / 60000} **Minutes**\n **Created at :** ${hours}:${minutes}:${seconds} ${suffix}`)
+                  .setFooter(message.author.username, message.author.avatarURL);
+                  message.guild.channels.find("name" , room).send(' :heavy_check_mark: **Giveaway Created** :heavy_check_mark:' , {embed: giveEmbed}).then(m => {
+                     let re = m.react('🎉');//Narox
+                     setTimeout(() => {
+                       let users = m.reactions.get("🎉").users;//Narox
+                       let list = users.array().filter(u => u.id !== m.author.id !== client.user.id);//Narox
+                       let gFilter = list[Math.floor(Math.random() * list.length) + 0]
+                       let endEmbed = new Discord.RichEmbed()//Narox
+                       .setAuthor(message.author.username, message.author.avatarURL)
+                       .setTitle(title)//Narox
+                       .addField('Giveaway Ended !🎉',`Winners : ${gFilter} \nEnded at :`)
+                       .setTimestamp()
+                     m.edit('** 🎉 GIVEAWAY ENDED 🎉**' , {embed: endEmbed});
+                    message.guild.channels.find("name" , room).send(`**Congratulations ${gFilter}! You won The \`${title}\`**` , {embed: {}})
+                     },duration);//Narox
+                   });
+                } catch(e) {//Narox
+                message.channel.send(`:heavy_multiplication_x:| **i Don't Have Prem**`);
+                 console.log(e);//Narox
+               }
+             });
+           });
+         });
+       });
+     });
+   });
+ }
+});
+
 //كود الريبورت
 
 client.on("message", msg => {// الحقوق محفوظ لذا سيرفر ناروكس ديفAll CopyRight For Narox Dev
@@ -57,22 +150,22 @@ if(cmd === `${p}report`){
 
 
     let rUser = msg.guild.member(msg.mentions.users.first() || msg.guild.members.get(args[0]));
-if(!rUser) return msg.channel.send("Couldn't find users.");
+if(!rUser) return msg.channel.send("برجاء منشنة الشخص المبلغ عليه وكتابة السبب بعدها");
     let reason = args.join(" ").slice(22);
 
 
 let reportembed = new Discord.RichEmbed()
-.setDescription("Reports")
+.setDescription("الشكاوي")
 .setColor("BLACK")
-.addField("Report User", `${rUser} with ID: ${rUser.id}`)
-.addField("Report By", `${msg.author} with ID: ${msg.author.id}`)
-.addField("Channel", msg.channel)
-.addField("Time", msg.createdAt)
-.addField("Reason",`${reason}`)
+.addField("**الشخص المعمول عليه الريبورت**", `${rUser} with ID: ${rUser.id}`)
+.addField("**الشخص المسوي الريبورت**", `${msg.author} with ID: ${msg.author.id}`)
+.addField("**تم عمل الريبورت او الشكوي من روم**", msg.channel)
+.addField("**تم عمل الريبورت في الساعة**", msg.createdAt)
+.addField("سبب الريبورت",`${reason}`)
 
 
 let reportchannel = msg.guild.channels.find(`name`,"reports")
-if(!reportchannel) return msg.channel.send("Couldn't find `reports` channel. ")
+if(!reportchannel) return msg.channel.send("`reports` لا يوجد روم ب اسم ")
 
 msg.delete().catch(O_o=>{});
 reportchannel.send(reportembed);
@@ -626,46 +719,51 @@ if (message.content === "*help") {
 
 **الأوامر العامة :globe_with_meridians: :**
 
-**:globe_with_meridians: *suggest <Suggestion> ~ يمكنك ارسال اقتراح  من هذا الامر**
-**:globe_with_meridians: *id ~ يجيب لك معلومات حسابك**
-**:globe_with_meridians: *server ~يعرض لك معلومات عن السيرفر**
-**:globe_with_meridians: *avatar ~ لعرض صورتك او صورة حد تمنشنو**
-**:globe_with_meridians: *time ~ لمعرفة الساعه في مكه المكرمه او مصر او الامارات**
-**:globe_with_meridians: *new ~ لعمل روم مساعده او استفسار مبينك انت والادمنيه**
-**:globe_with_meridians: *draw <Message> ~ لرسم اي شئ تكتبة**
-**:globe_with_meridians: *bans ~ لمعرفة عدد الأشخاص المبندة من السيرفر**
-**:globe_with_meridians: اكتب اسم اي بلد يطلع لك علمها**
+** *suggest <Suggestion> ~ يمكنك ارسال اقتراح  من هذا الامر**
+** *id ~ يجيب لك معلومات حسابك**
+** *server ~يعرض لك معلومات عن السيرفر**
+** *avatar ~ لعرض صورتك او صورة حد تمنشنو**
+** *time ~ لمعرفة الساعه في مكه المكرمه او مصر او الامارات**
+** *new ~ لعمل روم مساعده او استفسار مبينك انت والادمنيه**
+** *draw <Message> ~ لرسم اي شئ تكتبة**
+** *bans ~ لمعرفة عدد الأشخاص المبندة من السيرفر**
+** *report <@mention> <Reason> ~ لعمل شكوي علي احد تمنشنة ثم تكتب السبب**
+** اكتب اسم اي بلد يطلع لك علمها**
 
 **الأوامر الأدارية :tools: :**
 
-**:tools: *bc <message> ~ لعمل برودكاست لأعضاء السيرفر**
-**:tools: *nbc <message> ~ برودكاست او رسالة ل اعضاء السيرفر مع منشن فقط**
-**:tools: *clear <Number> ~ لمسح الرسايل ب العدد**
-**:tools: *kick <@mention> ~ ل طرد احد من السيرفر**
-**:tools: *ban <@mention> ~ ل تبنيد احد من السيرفر**
-**:tools: *mute <@mention> <Reason> ~ لعمل ميوت كتابي لحد**
-**:tools: *unmute <@mention> ~ لفك الميوت الكتابي**
-**:tools: *cchat ~ ل تقفيل الشات**
-**:tools: *unchat ~ ل فتح الشات**
-**:tools: *role <@mention> <@role> ~ ل اعطاء احد رتبه**
-**:tools: *voto <#room> <message> ~ ل عمل تصويت ب روم محدد**
-**:tools: *setVoice ~ ل تفعيل خاصية الفويس اون لاين**
+** *bc <message> ~ لعمل برودكاست لأعضاء السيرفر**
+** *nbc <message> ~ برودكاست او رسالة ل اعضاء السيرفر مع منشن فقط**
+** *clear <Number> ~ لمسح الرسايل ب العدد**
+** *kick <@mention> ~ ل طرد احد من السيرفر**
+** *ban <@mention> ~ ل تبنيد احد من السيرفر**
+** *mute <@mention> <Reason> ~ لعمل ميوت كتابي لحد**
+** *unmute <@mention> ~ لفك الميوت الكتابي**
+** *cchat ~ ل تقفيل الشات**
+** *unchat ~ ل فتح الشات**
+** *role <@mention> <@role> ~ ل اعطاء احد رتبه**
+** *voto <#room> <message> ~ ل عمل تصويت ب روم محدد**
+** *setVoice ~ ل تفعيل خاصية الفويس اون لاين**
 
 **اخري :gear: :**
 
-**:gear: يجب علي اونر السيرفر عمل روم ب اسم suggestions لكي الأقتراحا تيجي فيه**
+** يجب علي اونر السيرفر عمل روم ب اسم suggestions لكي الأقتراحا تيجي فيه**
 
-**:gear: يجب علي اونر السيرفر عمل رتبة ب اسم Support Team واعطاء صلاحية الادمنستوريتر لها لكي يعمل كود التيكت**
+** يجب علي اونر السيرفر عمل رتبة ب اسم Support Team واعطاء صلاحية الادمنستوريتر لها لكي يعمل كود التيكت**
 
-**:gear: يجب عليك عمل روم ب اسم log لكي يتم تفعيل كود المراقبة او الوق فيه**
+** يجب عليك عمل روم ب اسم log لكي يتم تفعيل كود المراقبة او الوق فيه**
 
-**:gear: Welcome ~ لعمل ترحيب ب روم مخصص سوي روم ب الاسم ده**
+** Welcome ~ لعمل ترحيب ب روم مخصص سوي روم ب الاسم ده**
+
+** لتفعيل خاصية الشكاوي او الريبورتات قوم ب عمل روم ب اسم reports**
+
+** يوجد مضاد سبام في البوت للمخربين**
 
 **معلومات البوت :robot: :**
 
-**:robot: *invite ~ يرسل لك رابط اضافة البوت خاص**
-**:robot: *support ~ يرسل لك رابط الدعم الفني ب الخاص**
-**:robot: *bot ~ يعرض لك معلومات البوت**
+** *invite ~ يرسل لك رابط اضافة البوت خاص**
+** *support ~ يرسل لك رابط الدعم الفني ب الخاص**
+** *info ~ يعرض لك معلومات البوت**
 
 __**Copyright © GMZN Host**__
 `) 
@@ -812,7 +910,7 @@ client.on('message', function(msg) {
 // + معلومات البوت + كود البينج الهو سرعة البوت
  
 client.on('message', message => {
-    if (message.content === ('*bot')) {
+    if (message.content === ('*info')) {
     message.channel.send({
         embed: new Discord.RichEmbed()
             .setAuthor(client.user.username,client.user.avatarURL)
@@ -829,7 +927,34 @@ client.on('message', message => {
 }
 });
 
+//مضاد السبام
 
+var anti_spam = require("discord-anti-spam");
+ 
+anti_spam(bot, {
+  warnBuffer: 7,  //MHSTR
+  maxBuffer: 8,  //MHSTR
+  interval: 1000,  //MHSTR
+  warningMessage: "**سيتم طردك إن لم توقف سبام**",  //MHSTR
+  banMessage: "تم الطرد بسبب السبام",  //MHSTR
+  maxDuplicatesWarning: 7, //NAROX
+  maxDuplicatesBan: 10  //NAROX
+});
+ 
+bot.login(process.env.BOT_SPAM);
+ 
+const bot1 = new Discord.Client();
+ 
+ var anti_spam1 = require("discord-anti-spam");
+anti_spam1(bot1, {
+  warnBuffer: 7,  //@N.C™ » MHSTR#1119  //// حقوق مهستر
+  maxBuffer: 8,  //@N.C™ » MHSTR#1119
+  interval: 1000, //@N.C™ » MHSTR#1119
+  warningMessage: "**سيتم طردك إن لم توقف سبام**",  //NAROX codes
+  banMessage: "تم الطرد بسبب السبام",  //NAROX codes
+  maxDuplicatesWarning: 7,  //NAROX codes
+  maxDuplicatesBan: 10  //MHSTR
+});
  
 //بعض الاكواد الاداريه اولهم كود مسح الشات
  
