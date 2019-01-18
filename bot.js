@@ -42,6 +42,45 @@ client.on('ready', () => {
   console.log('')
 });
 
+//كود الريبورت
+
+client.on("message", msg => {// الحقوق محفوظ لذا سيرفر ناروكس ديفAll CopyRight For Narox Dev
+    if(msg.author.bot) return;
+if(msg.channel.type === 'dm') return;
+
+let p = "*";//البرفكس
+let msgarray = msg.content.split(" ");
+let cmd = msgarray[0];
+let args = msgarray.slice(1);
+
+if(cmd === `${p}report`){
+
+
+    let rUser = msg.guild.member(msg.mentions.users.first() || msg.guild.members.get(args[0]));
+if(!rUser) return msg.channel.send("Couldn't find users.");
+    let reason = args.join(" ").slice(22);
+
+
+let reportembed = new Discord.RichEmbed()
+.setDescription("Reports")
+.setColor("BLACK")
+.addField("Report User", `${rUser} with ID: ${rUser.id}`)
+.addField("Report By", `${msg.author} with ID: ${msg.author.id}`)
+.addField("Channel", msg.channel)
+.addField("Time", msg.createdAt)
+.addField("Reason",`${reason}`)
+
+
+let reportchannel = msg.guild.channels.find(`name`,"reports")
+if(!reportchannel) return msg.channel.send("Couldn't find `reports` channel. ")
+
+msg.delete().catch(O_o=>{});
+reportchannel.send(reportembed);
+    return;
+}
+});
+
+
 
 //الردود التلقائي
 
