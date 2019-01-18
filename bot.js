@@ -73,7 +73,8 @@ hours = 12;//Narox
   if(message.content.startsWith(prefix + "giveaway")) {
  
     if(!message.guild.member(message.author).hasPermission('MANAGE_GUILD')) return message.channel.send(':heavy_multiplication_x:| **يجب أن يكون لديك خاصية التعديل على السيرفر**');
-    message.channel.send(`:eight_pointed_black_star:| **Send Name channel For the Giveaway**`).then(msg => {
+    message.channel.send(`:eight_pointed_black_star:| **اكتب اسم الروم مثال : chat ملاحظة بدون رمز #:heavy_check_mark: Giveaway Created :heavy_check_mark:
+**`).then(msg => {
       message.channel.awaitMessages(filter, {//Narox
         max: 1,//Narox
         time: 20000,
@@ -83,7 +84,7 @@ hours = 12;//Narox
         if(!room) return message.channel.send(':heavy_multiplication_x:| **i Found It :(**');//Narox
         room = collected.first().content;
         collected.first().delete();//Narox
-        msg.edit(':eight_pointed_black_star:| **Time For The Giveaway**').then(msg => {
+        msg.edit(':eight_pointed_black_star:| **برجاء كتابة الوقت**').then(msg => {
           message.channel.awaitMessages(filter, {
             max: 1,
             time: 20000,//Narox
@@ -106,7 +107,7 @@ hours = 12;//Narox
                   let giveEmbed = new Discord.RichEmbed()
                   .setDescription(`**${title}** \nReact With 🎉 To Enter! \nTime remaining : ${duration / 60000} **Minutes**\n **Created at :** ${hours}:${minutes}:${seconds} ${suffix}`)
                   .setFooter(message.author.username, message.author.avatarURL);
-                  message.guild.channels.find("name" , room).send(' :heavy_check_mark: **Giveaway Created** :heavy_check_mark:' , {embed: giveEmbed}).then(m => {
+                  message.guild.channels.find("name" , room).send(':tada: **New Giveaway** :tada:' , {embed: giveEmbed}).then(m => {
                      let re = m.react('🎉');//Narox
                      setTimeout(() => {
                        let users = m.reactions.get("🎉").users;//Narox
