@@ -42,133 +42,7 @@ client.on('ready', () => {
   console.log('')
 });
 
-//تفعيل
 
-client.on('guildMemberAdd', (member) => {
-member.addRole(member.guild.roles.find('name', 'not active'));
-});
-
-
-client.on('message', message => {                      
-    if(!message.channel.guild) return;
-       if(message.content.startsWith(prefix + 'تفعيل')) {
-        let modlog = client.channels.find('name', 'active');
-       if(!message.channel.guild) return message.channel.send('**هذا الأمر فقط للسيرفرات**').then(m => m.delete(5000));
-       message.channel.sendMessage(`برجاء الضغط علي علامة الصح لكي تتفعل لقسم الحياة الواقعية في العبة`).then(msg => {
-        
-        
-        msg.react('✅')
-       .then(() => msg.react('✅'))
-     
-     
-
-       let activeFilter = (reaction, user) => reaction.emoji.name === '✅' && user.id === message.author.id;
-     
-       let active = msg.createReactionCollector(activeFilter, { time: 15000 });
-     
-                                                        
-                               active.on("collect", r => {
-                                   message.member.addRole(message.guild.roles.find("name", "MTA : مواطن"));
-                                   message.member.removeRole(message.guild.roles.find("name", "MTA : مواطن"));
-                                   msg.delete();
-                                   message.channel.send(`**تم تفعيلك استمتع.**`).then(m => m.delete(1000));
-     
-                                   })
-                                   })
-                                   }
-                                   });
-
-//giveaway
-
-const moment = require('moment');
-client.on('message',async message => {//Narox
-  var time = moment().format('Do MMMM YYYY , hh:mm');
-  var room;
-  var title;
-  var duration;
-  var gMembers;
-  var currentTime = new Date(),//Narox
-hours = currentTime.getHours() + 3 ,
-minutes = currentTime.getMinutes(),
-done = currentTime.getMinutes() + duration / 60000 ,
-seconds = currentTime.getSeconds();
-if (minutes < 10) {
-minutes = "0" + minutes;
-}
-var suffix = "AM";
-if (hours >= 12) {
-suffix = "PM";
-hours = hours - 12;
-}
-if (hours == 0) {
-hours = 12;//Narox
-}
- 
-  var filter = m => m.author.id === message.author.id;//Narox
-  if(message.content.startsWith(prefix + "giveaway")) {
- 
-    if(!message.guild.member(message.author).hasPermission('MANAGE_GUILD')) return message.channel.send(':heavy_multiplication_x:| **يجب أن يكون لديك خاصية التعديل على السيرفر**');
-    message.channel.send(`:eight_pointed_black_star:| **اكتب اسم الروم مثال : chat ملاحظة بدون رمز #:heavy_check_mark: Giveaway Created :heavy_check_mark:
-**`).then(msg => {
-      message.channel.awaitMessages(filter, {//Narox
-        max: 1,//Narox
-        time: 20000,
-        errors: ['time']
-      }).then(collected => {//Narox
-        let room = message.guild.channels.find('name' , collected.first().content);//Narox
-        if(!room) return message.channel.send(':heavy_multiplication_x:| **i Found It :(**');//Narox
-        room = collected.first().content;
-        collected.first().delete();//Narox
-        msg.edit(':eight_pointed_black_star:| **برجاء كتابة الوقت**').then(msg => {
-          message.channel.awaitMessages(filter, {
-            max: 1,
-            time: 20000,//Narox
-            errors: ['time']
-          }).then(collected => {//Narox
-            if(isNaN(collected.first().content)) return message.channel.send(':heavy_multiplication_x:| **The Time Be Nambers `` Do the Commend Agin``**');
-            duration = collected.first().content * 60000;
-            collected.first().delete();//Narox
-            msg.edit(':eight_pointed_black_star:| **Now send The Present **').then(msg => {
-              message.channel.awaitMessages(filter, {
-                max: 1,
-                time: 20000,//Narox
-                errors: ['time']
-              }).then(collected => {
-                title = collected.first().content;
-                collected.first().delete();
-                msg.delete();
-                message.delete();
-                try {
-                  let giveEmbed = new Discord.RichEmbed()
-                  .setDescription(`**${title}** \nReact With 🎉 To Enter! \nTime remaining : ${duration / 60000} **Minutes**\n **Created at :** ${hours}:${minutes}:${seconds} ${suffix}`)
-                  .setFooter(message.author.username, message.author.avatarURL);
-                  message.guild.channels.find("name" , room).send(':tada: **New Giveaway** :tada:' , {embed: giveEmbed}).then(m => {
-                     let re = m.react('🎉');//Narox
-                     setTimeout(() => {
-                       let users = m.reactions.get("🎉").users;//Narox
-                       let list = users.array().filter(u => u.id !== m.author.id !== client.user.id);//Narox
-                       let gFilter = list[Math.floor(Math.random() * list.length) + 0]
-                       let endEmbed = new Discord.RichEmbed()//Narox
-                       .setAuthor(message.author.username, message.author.avatarURL)
-                       .setTitle(title)//Narox
-                       .addField('Giveaway Ended !🎉',`Winners : ${gFilter} \nEnded at :`)
-                       .setTimestamp()
-                     m.edit('** 🎉 GIVEAWAY ENDED 🎉**' , {embed: endEmbed});
-                    message.guild.channels.find("name" , room).send(`**Congratulations ${gFilter}! You won The \`${title}\`**` , {embed: {}})
-                     },duration);//Narox
-                   });
-                } catch(e) {//Narox
-                message.channel.send(`:heavy_multiplication_x:| **i Don't Have Prem**`);
-                 console.log(e);//Narox
-               }
-             });
-           });
-         });
-       });
-     });
-   });
- }
-});
 
 //كود الريبورت
 
@@ -192,11 +66,11 @@ if(!rUser) return msg.channel.send("برجاء منشنة الشخص المبل�
 let reportembed = new Discord.RichEmbed()
 .setDescription("الشكاوي")
 .setColor("BLACK")
-.addField("**الشخص المعمول عليه الريبورت**", `${rUser} with ID: ${rUser.id}`)
-.addField("**الشخص المسوي الريبورت**", `${msg.author} with ID: ${msg.author.id}`)
-.addField("**تم عمل الريبورت او الشكوي من روم**", msg.channel)
-.addField("**تم عمل الريبورت في الساعة**", msg.createdAt)
-.addField("سبب الريبورت",`${reason}`)
+.addField("**الشخص المعمول عليه الريبورت :**", `${rUser} with ID: ${rUser.id}`)
+.addField("**الشخص المسوي الريبورت :**", `${msg.author} with ID: ${msg.author.id}`)
+.addField("**تم عمل الريبورت او الشكوي من روم :**", msg.channel)
+.addField("**تم عمل الريبورت في الساعة :**", msg.createdAt)
+.addField("سبب الريبورت :",`${reason}`)
 
 
 let reportchannel = msg.guild.channels.find(`name`,"reports")
@@ -212,31 +86,31 @@ reportchannel.send(reportembed);
 
 //الردود التلقائي
 
-client.on('message', msg => {
-  if (msg.content === 'السلام عليكم') {
-    msg.reply('وعليكم السلام ورحمة الله تعالى وبركاته :heart:');
-  }
-});
+//client.on('message', msg => {
+  //if (msg.content === 'السلام عليكم') {
+    //msg.reply('وعليكم السلام ورحمة الله تعالى وبركاته :heart:');
+  //}
+//});
 
 
-client.on('message', msg => {
-  if (msg.content === 'باك') {
-    msg.reply('ولكم ياقلبي  :heartpulse: ');
-  }
-});
+//client.on('message', msg => {
+  //if (msg.content === 'باك') {
+    //msg.reply('ولكم ياقلبي  :heartpulse: ');
+  //}
+//});
 
 
-client.on('message', msg => {
-  if (msg.content === 'هلا') {
-    msg.reply(':heart:هلا بيك ياعمري منورنا:heart:');
-  }
-});
+//client.on('message', msg => {
+  //if (msg.content === 'هلا') {
+    //msg.reply(':heart:هلا بيك ياعمري منورنا:heart:');
+  //}
+//});
 
-client.on('message', msg => {
-  if (msg.content === 'باي') {
-    msg.reply(':heart: باي نشوفك بعدين :heart:');
-  }
-});
+//client.on('message', msg => {
+  //if (msg.content === 'باي') {
+    //msg.reply(':heart: باي نشوفك بعدين :heart:');
+  //}
+//});
 
 
 
@@ -452,7 +326,7 @@ client.on("message", (message) => {
   if (message.content.startsWith("*close")) {
         if (!message.channel.name.startsWith(`ticket-`)) return message.channel.send(`You can't use the close command outside of a ticket channel.`);
  
-        message.channel.send(`هل أنت متأكد؟ بعد التأكيد ، لا يمكنك عكس هذا الإجراء!\n للتأكيد ، اكتب\`*confirm\`. سيؤدي ذلك إلى مهلة زمنية في غضون 10 ثوانٍ وإلغائها`)
+        message.channel.send(`*close امامك 10 ثواني لتأكيد غلق التذكرة - قم ب اعادة كتابة الأمر`)
             .then((m) => {
                 message.channel.awaitMessages(response => response.content === '*confirm', {
                         max: 1,
@@ -568,96 +442,6 @@ client.on('message', function(message) {
 
 //------------------------------------
 
-//كود الاعلام
-
-client.on('message', msg => {
-  if (msg.content === 'فلسطين') {      
-    msg.channel.send(":flag_ps:")
-  }
-});
-
-client.on('message', msg => {
-  if (msg.content === 'السعودية') {      
-    msg.channel.send("🇸🇦")
-  }
-});
-
-client.on('message', msg => {
-  if (msg.content === 'مصر') {      
-    msg.channel.send("🇪🇬")
-  }
-});
-
-client.on('message', msg => {
-  if (msg.content === 'المغرب') {      
-    msg.channel.send("🇲🇦")
-  }
-});
-
-client.on('message', msg => {
-  if (msg.content === 'العراق') {      
-    msg.channel.send("🇮🇶")
-  }
-});
-
-client.on('message', msg => {
-  if (msg.content === 'الجزائر') {      
-    msg.channel.send("🇩🇿")
-  }
-});
-
-client.on('message', msg => {
-  if (msg.content === 'الامارات') {      
-    msg.channel.send("🇦🇪")
-  }
-});
-
-client.on('message', msg => {
-  if (msg.content === 'تونس') {      
-    msg.channel.send("🇹🇳")
-  }
-});
-
-client.on('message', msg => {
-  if (msg.content === 'سوريا') {      
-    msg.channel.send("🇸🇾")
-  }
-});
-
-client.on('message', msg => {
-  if (msg.content === 'ليبيا') {      
-    msg.channel.send("🇱🇾")
-  }
-});
-
-client.on('message', msg => {
-  if (msg.content === 'قطر') {      
-    msg.channel.send("🇶🇦")
-  }
-});
-
-client.on('message', msg => {
-  if (msg.content === 'الصومال') {      
-    msg.channel.send("🇸🇴")
-  }
-});
-
-client.on('message', msg => {
-  if (msg.content === 'عمان') {      
-    msg.channel.send("🇴🇲")
-  }
-});
-
-client.on('message', msg => {
-  if (msg.content === 'موريتانيا') {      
-    msg.channel.send("🇲🇷")
-  }
-});
-
-//نهاية كود الساعة
-
-//-------------------------------------
-
 // سيرفر الدعم الفني) كود السبورت
  
 client.on('message' , message => {
@@ -750,9 +534,7 @@ client.on("message", message => {
 if (message.content === "*help") {
    message.channel.send('**تم ارسالك في الخاص** :mailbox_with_mail: ');
  message.author.sendMessage(`
-       **:right_facing_fist: ⦕ɢ⦖⦕м⦖⦕z⦖⦕и⦖ ⦕в⦖⦕σ⦖⦕τ⦖ :left_facing_fist:**
-
-**الأوامر العامة :globe_with_meridians: :**
+__**الأوامر العامة :**__
 
 ** *suggest <Suggestion> ~ يمكنك ارسال اقتراح  من هذا الامر**
 ** *id ~ يجيب لك معلومات حسابك**
@@ -763,9 +545,8 @@ if (message.content === "*help") {
 ** *draw <Message> ~ لرسم اي شئ تكتبة**
 ** *bans ~ لمعرفة عدد الأشخاص المبندة من السيرفر**
 ** *report <@mention> <Reason> ~ لعمل شكوي علي احد تمنشنة ثم تكتب السبب**
-** اكتب اسم اي بلد يطلع لك علمها**
 
-**الأوامر الأدارية :tools: :**
+__**الأوامر الأدارية :**__
 
 ** *bc <message> ~ لعمل برودكاست لأعضاء السيرفر**
 ** *nbc <message> ~ برودكاست او رسالة ل اعضاء السيرفر مع منشن فقط**
@@ -780,20 +561,16 @@ if (message.content === "*help") {
 ** *voto <#room> <message> ~ ل عمل تصويت ب روم محدد**
 ** *setVoice ~ ل تفعيل خاصية الفويس اون لاين**
 
-**اخري :gear: :**
+__**اخري :**__
 
-** يجب علي اونر السيرفر عمل روم ب اسم suggestions لكي الأقتراحا تيجي فيه**
-
-** يجب علي اونر السيرفر عمل رتبة ب اسم Support Team واعطاء صلاحية الادمنستوريتر لها لكي يعمل كود التيكت**
-
-** يجب عليك عمل روم ب اسم log لكي يتم تفعيل كود المراقبة او الوق فيه**
-
-** Welcome ~ لعمل ترحيب ب روم مخصص سوي روم ب الاسم ده**
-
-** لتفعيل خاصية الشكاوي او الريبورتات قوم ب عمل روم ب اسم reports**
+** يجب علي اونر السيرفر عمل روم ب اسم suggestions لكي الأقتراحا تيجي فيه .**
+** يجب علي اونر السيرفر عمل رتبة ب اسم Support Team واعطاء صلاحية الادمنستوريتر لها لكي يعمل كود التيكت .**
+** يجب عليك عمل روم ب اسم log لكي يتم تفعيل كود المراقبة او الوق فيه .**
+** Welcome ~ لعمل ترحيب ب روم مخصص سوي روم ب الاسم ده .**
+** لتفعيل خاصية الشكاوي او الريبورتات قوم ب عمل روم ب اسم reports .**
 
 
-**معلومات البوت :robot: :**
+__**معلومات البوت :**__
 
 ** *invite ~ يرسل لك رابط اضافة البوت خاص**
 ** *support ~ يرسل لك رابط الدعم الفني ب الخاص**
