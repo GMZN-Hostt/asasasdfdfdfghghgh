@@ -12,7 +12,7 @@ const UserBlocked = new Set();
 const prefix = '*'
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
-  client.user.setActivity("Say : *help | *invite ∾", {type: 'PLAYING'});
+  client.user.setActivity("Type : *help | *invite ", {type: 'PLAYING'});
   console.log('')
   console.log('')
   console.log('╔[═════════════════════════════════════════════════════════════════]╗')
@@ -455,7 +455,7 @@ client.on('message' , message => {
  .setDescription("الدعم الفني" + `
  **
 سيرفر الدعم الفني |
-https://discord.gg/quyK7qq
+https://discord.gg/kVBakmK
 **
 `);
   message.author.sendEmbed(embed);
