@@ -12,7 +12,8 @@ const UserBlocked = new Set();
 const prefix = '*'
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
-  client.user.setActivity("Type : *help | *invite ", {type: 'PLAYING'});
+client.user.setActivity("*help | *invite ","https://www.twitch.tv/idk");
+  //client.user.setActivity("*help | *invite ", {type: 'PLAYING'});
   console.log('')
   console.log('')
   console.log('╔[═════════════════════════════════════════════════════════════════]╗')
@@ -253,6 +254,19 @@ client.on('message', message => {
 
 
 //----------
+//مانع النشر
+
+client.on('message', message => {
+    if(message.content.toLowerCase().startsWith(`discord.gg`)){
+        message.member.addRole(message.guild.roles.find('name', 'Muted'));
+        var embed = new Discord.RichEmbed()
+        .setDescription(`تمت معاقبتك لنشرك سيرفر اخر هنا`)
+            message.delete();
+        message.channel.send(`<@${message.author.id}`);
+        message.channel.send({embed});
+    }
+});
+
 
 //بداية كود ارسال رسالة لجميع مستخدمين البوت
 
@@ -571,7 +585,7 @@ __**اخري :**__
 
 
 __**معلومات البوت :**__
-
+** يوجد كود منع نشر روابط سيرفرات ديسكورد اخري**
 ** *invite ~ يرسل لك رابط اضافة البوت خاص**
 ** *support ~ يرسل لك رابط الدعم الفني ب الخاص**
 ** *info ~ يعرض لك معلومات البوت**
