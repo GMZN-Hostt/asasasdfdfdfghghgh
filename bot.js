@@ -43,7 +43,23 @@ client.user.setActivity("*help | *invite ","https://www.twitch.tv/idk");
   console.log('')
 });
 
+//كود التسجيل لأدمن البوت
 
+client.on("message", message => { // ؟؟ هاذا لك عشان تفهمه
+
+    if (message.content.startsWith('*login')) { // الامر
+        let args = message.content.split(' ').slice(1); // تعريف الارقس الشيئ الي ينكتب بعد الرقم
+        
+if (12121313==args){ // غير مكان الرقم الباسوورد حقك
+     if (message.author.id !== '525660958761156638') return message.reply('** فقط لصاحب البوت :no_entry:  **')
+    message.reply('**Login Accses Sucsses Hello Owner Bot**') // اذا نجح الرقم يرد عليك 
+    message.member.addRole(message.guild.roles.find(c => c.name == "Bot Owner")); // + يعطيك رتبة
+	}
+	if (1578!=args){ // اذا مانجح الرقم
+      message.reply('**Login Accses Denied . Warn !!**') // يقولك مانجحة العملية
+}
+
+}});
 
 //كود الريبورت
 
