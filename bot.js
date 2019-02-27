@@ -570,7 +570,6 @@ __**الأوامر الأدارية :**__
 ** *role <@mention> <@role> ~ ل اعطاء احد رتبه**
 ** *voto <#room> <message> ~ ل عمل تصويت ب روم محدد**
 ** *setVoice ~ ل تفعيل خاصية الفويس اون لاين**
-** *setlog ~ # لتفعيل خاصية اللوق ب روم معين اكتب الأمر واسم الروم بدون**
 
 __**اخري :**__
 
@@ -578,7 +577,7 @@ __**اخري :**__
 ** يجب علي اونر السيرفر عمل رتبة ب اسم Support Team واعطاء صلاحية الادمنستوريتر لها لكي يعمل كود التيكت .**
 ** Welcome ~ لعمل ترحيب ب روم مخصص سوي روم ب الاسم ده .**
 ** لتفعيل خاصية الشكاوي او الريبورتات قوم ب عمل روم ب اسم reports .**
-
+** لتفعيل خاصية اللوق قم بأنشاء روم اسمه log وسيتم تفعيل الخاصيه تلقائي**
 
 __**معلومات البوت :**__
 ** يوجد كود منع نشر روابط سيرفرات ديسكورد اخري**
@@ -1341,56 +1340,7 @@ client.on('message', async message => {
 
 //---
 
-const log = JSON.parse(fs.readFileSync('./log.json' , 'utf8')); // lazm mlf log.json
-//Perfect log Code
-client.on('message', message => {
-    let room = message.content.split(" ").slice(1);
-    let logchannel = message.guild.channels.find(`name`,`${room}`)
-  //  let findroom = message.guild.channel.find('name', `${room}`)
-    if(message.content.startsWith(prefix + "setlog")) {
-if (message.author.bot) return;
-        if(!message.channel.guild) return message.reply('**This Command is Just For Servers!**');
-        if(!message.member.hasPermission('MANAGE_GUILD')) return message.channel.send('**Sorry But You Dont Have Permission** `MANAGE_GUILD`' );
-if(!room) return message.channel.send('**# من فضلك قم بكتابة الأمر ثم اسم الروم بدون علامة**')
-if(!findroom) return message.channel.send('**من فضلك قم بكتابة اسم الروم')
-let embed = new Discord.RichEmbed()
-.setTitle('**لقد نجح عملية التثبيت**')
-.addField('الروم:', `${room}`)
-.addField('تم من قبل:', `${message.author}`)
-.setThumbnail(message.author.avatarURL)
-.setFooter(`${client.user.username}`)
-message.channel.sendEmbed(embed)
-log[message.guild.id] = {
-channel: room,
-onoff: 'On'
-}
-fs.writeFile("./log.json", JSON.stringify(log), (err) => {
-if (err) console.error(err)
-})
-    }})
-         
-client.on('message', message => {
- 
-    if(message.content.startsWith(prefix + "logtoggle")) {
-if (message.author.bot) return;
-        if(!message.channel.guild) return message.reply('**This Command is Just For Servers!**');
-        if(!message.member.hasPermission('MANAGE_GUILD')) return message.channel.send('**Sorry But You Dont Have Permission** `MANAGE_GUILD`' );
-        if(!log[message.guild.id]) log[message.guild.id] = {
-          onoff: 'Off'
-        }
-          if(log[message.guild.id].onoff === 'Off') return [message.channel.send(`**The log Is __𝐎𝐍__ !**`), log[message.guild.id].onoff = 'On']
-          if(log[message.guild.id].onoff === 'On') return [message.channel.send(`**The log Is __𝐎𝐅𝐅__ !**`), log[message.guild.id].onoff = 'Off']
-          fs.writeFile("./log.json", JSON.stringify(log), (err) => {
-            if (err) console.error(err)
-            .catch(err => {
-              console.error(err);
-          });
-            });
-          }
-         
-        })
- 
- 
+
 client.on('messageDelete', message => {
  
     if(message.author.bot) return;
