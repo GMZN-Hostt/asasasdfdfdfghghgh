@@ -12,6 +12,22 @@ const UserBlocked = new Set();
 const prefix = '*'
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
+client.on('ready', function(){
+    var ms = 4444 ;
+    var setGame = [`${client.guilds.size} Servers`,`${client.users.size} Users`,`${prefix}help | ${prefix}invite`];
+    var i = -1;
+    var j = 0;
+    setInterval(function (){
+        if( i == -1 ){
+            j = 1;
+        }
+        if( i == (setGame.length)-1 ){
+            j = -1;
+        }
+        i = i+j;
+        client.user.setActivity(setGame[i],{type: "WATCHING"});
+    }, ms);
+});
   //client.user.setActivity("*help | *invite ", {type: 'PLAYING'});
   console.log('')
   console.log('')
@@ -30,11 +46,6 @@ client.on('ready', () => {
   console.log('╚[════════════════════════════════════]╝')
   console.log('')
   console.log('╔[════════════]╗')
-  console.log(' Bot Is Online')
-  console.log(' Bot with GMZN Host')
-  console.log(' Bot with GMZN Host')
-  console.log(' Bot with GMZN Host')
-  console.log(' Bot with GMZN Host')
   console.log(' Bot with GMZN Host')
   console.log(' Bot Is Online')
   console.log('╚[════════════]╝')
@@ -44,22 +55,7 @@ client.on('ready', () => {
 
 //---
 
-client.on('ready', function(){
-    var ms = 4444 ;
-    var setGame = [`${client.guilds.size} Servers`,`${client.users.size} Users`,`${prefix}help | ${prefix}invite`];
-    var i = -1;
-    var j = 0;
-    setInterval(function (){
-        if( i == -1 ){
-            j = 1;
-        }
-        if( i == (setGame.length)-1 ){
-            j = -1;
-        }
-        i = i+j;
-        client.user.setActivity(setGame[i],{type: "WATCHING"});
-    }, ms);
-});
+
 
 //كود الريبورت
 
