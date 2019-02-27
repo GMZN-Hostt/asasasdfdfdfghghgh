@@ -59,7 +59,6 @@ client.on('ready', function(){
         i = i+j;
         client.user.setActivity(setGame[i],{type: "WATCHING"});
     }, ms);
-console.log(`${client.user.username} Online
 });
 
 //كود الريبورت
