@@ -11,25 +11,8 @@ const queue = new Map();
 const UserBlocked = new Set();
 const prefix = '*'
 client.on('ready', () => {
-//client.on('ready', function(){
-    var ms = 4444 ;
-    var setGame = [`${client.guilds.size} Servers`,`${client.users.size} Users`,`${prefix}help | ${prefix}invite`];
-    var i = -1;
-    var j = 0;
-    setInterval(function (){
-        if( i == -1 ){
-            j = 1;
-        }
-        if( i == (setGame.length)-1 ){
-            j = -1;
-        }
-        i = i+j;
-        client.user.setActivity(setGame[i],{type: "WATCHING"});
-    }, ms);
-console.log(`${client.user.username} Online`)
-});
-  //client.user.setActivity("*help | *invite ", {type: 'PLAYING'});
   console.log(`Logged in as ${client.user.tag}!`);
+  //client.user.setActivity("*help | *invite ", {type: 'PLAYING'});
   console.log('')
   console.log('')
   console.log('╔[═════════════════════════════════════════════════════════════════]╗')
@@ -236,25 +219,25 @@ client.on('message', message => {
 
 // بداية كود تغير الحالة كل شوي استريمنج
 
-//client.on('ready', function(){
-  //  var ms = 7000;
-    //var setGame = [`©GMZN Host`,'Say : *help | *invite','Say : *support | *invite'];
-    //var i = -1;
-    //var j = 0;
-    //setInterval(function (){
-     //   if( i == -1 ){
-       //     j = 1;
-        //}
-        //if( i == (setGame.length)-1 ){
-         //   j = -1;
-        //}
-        //i = i+j;
-       //client.user.setGame(setGame[i],`http://www.twitch.tv/idk`);
-    //}, ms);
+client.on('ready', function(){
+ var ms = 7000;
+    var setGame = [`${client.guilds.size} Servers`,`${client.users.size} Users`,`${prefix}help | ${prefix}invite`];
+    var i = -1;
+    var j = 0;
+    setInterval(function (){
+       if( i == -1 ){
+            j = 1;
+        }
+        if( i == (setGame.length)-1 ){
+            j = -1;
+        }
+        i = i+j;
+        client.user.setActivity(setGame[i],{type: "WATCHING"});
+    }, ms);
  
  
  
-//})
+})
 
 //نهاية كود تغير الحالة كل شوي
 
