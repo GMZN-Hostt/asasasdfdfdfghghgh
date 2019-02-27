@@ -731,7 +731,7 @@ client.on('message', function(msg) {
 // + معلومات البوت + كود البينج الهو سرعة البوت
  
 client.on('message', message => {
-    if (message.content === ('*info')) {
+    if (message.content === ('*stats')) {
     message.channel.send({
         embed: new Discord.RichEmbed()
             .setAuthor(client.user.username,client.user.avatarURL)
@@ -740,6 +740,8 @@ client.on('message', message => {
             .addField('**سرعة البوت 🚀 :**' , [`${Date.now() - message.createdTimestamp}` + 'MS'], true)
             .addField('**السيرفرات 📚 :**', [client.guilds.size], true)
             .addField('**الرومات 📝 :**' , `[ ${client.channels.size} ]` , true)
+            .addField('**الدعم الفني :**' , `https://discord.gg/4pEh3qx , https://discord.gg/RjAvkAc` , true)
+            .addField('**البرفكس :**' , `*` , true)
             .addField('**الأشخاص 🔮 :**' ,`[ ${client.users.size} ]` , true)
             .addField('**اسم البوت 🔰 :**' , `[ ${client.user.tag} ]` , true)
             .addField('**صاحب ومبرمج البوت 👑 :**' , `[<@525660958761156638>]` , true)
@@ -1343,7 +1345,7 @@ const log = JSON.parse(fs.readFileSync('./log.json' , 'utf8')); // lazm mlf log.
 //Perfect log Code
 client.on('message', message => {
     let room = message.content.split(" ").slice(1);
-    let logchannel = msg.guild.channels.find(`name`,`${room}`)
+    let logchannel = message.guild.channels.find(`name`,`${room}`)
   //  let findroom = message.guild.channel.find('name', `${room}`)
     if(message.content.startsWith(prefix + "setlog")) {
 if (message.author.bot) return;
