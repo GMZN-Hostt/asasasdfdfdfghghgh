@@ -12,7 +12,6 @@ const UserBlocked = new Set();
 const prefix = '*'
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
-client.on('ready', function(){
     var ms = 4444 ;
     var setGame = [`${client.guilds.size} Servers`,`${client.users.size} Users`,`${prefix}help | ${prefix}invite`];
     var i = -1;
