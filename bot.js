@@ -27,7 +27,7 @@ client.on('ready', function(){
         i = i+j;
         client.user.setActivity(setGame[i],{type: "WATCHING"});
     }, ms);
-console.log(`${client.user.username} Online
+console.log(`${client.user.username} Online`)
 });
   //client.user.setActivity("*help | *invite ", {type: 'PLAYING'});
   console.log('')
