@@ -10,8 +10,8 @@ const youtube = new YouTube("AIzaSyAdORXg7UZUo7sePv97JyoDqtQVi3Ll0b8");
 const queue = new Map();
 const UserBlocked = new Set();
 const prefix = '*'
-//client.on('ready', () => {
-client.on('ready', function(){
+client.on('ready', () => {
+//client.on('ready', function(){
     var ms = 4444 ;
     var setGame = [`${client.guilds.size} Servers`,`${client.users.size} Users`,`${prefix}help | ${prefix}invite`];
     var i = -1;
