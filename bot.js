@@ -10,8 +10,7 @@ const youtube = new YouTube("AIzaSyAdORXg7UZUo7sePv97JyoDqtQVi3Ll0b8");
 const queue = new Map();
 const UserBlocked = new Set();
 const prefix = '*'
-client.on('ready', () => {
-  console.log(`Logged in as ${client.user.tag}!`);
+//client.on('ready', () => {
 client.on('ready', function(){
     var ms = 4444 ;
     var setGame = [`${client.guilds.size} Servers`,`${client.users.size} Users`,`${prefix}help | ${prefix}invite`];
@@ -30,6 +29,7 @@ client.on('ready', function(){
 console.log(`${client.user.username} Online`)
 });
   //client.user.setActivity("*help | *invite ", {type: 'PLAYING'});
+  console.log(`Logged in as ${client.user.tag}!`);
   console.log('')
   console.log('')
   console.log('╔[═════════════════════════════════════════════════════════════════]╗')
