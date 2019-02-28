@@ -53,7 +53,7 @@ client.on("message", message => {
 //---
 
 client.on('message' , async (message) => {  
-//var prefix = "?" 
+var prefix = "*" 
     if(message.content.startsWith(prefix + "topinv")) { 
 if(message.author.bot) return;
 if(!message.channel.guild) return message.reply(' Error : ` Guild Command `'); 
