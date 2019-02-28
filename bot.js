@@ -107,7 +107,7 @@ client.on('message', message => {
         let Mrx = new Discord.RichEmbed()
         .setColor('RANDOM')
         .setTitle('**🆕 تم ارسال رسالة لك انت فقط !**')//Mrx Dev
-        .setThumbnail(man.avatarURL)
+        //.setThumbnail(man.avatarURL)
         .addField('**🔨 مرسل الرسالة:**',man.username ,true)//Mrx Dev
         .addField('**📜 الرسالة:**',args)
         .setFooter(client.user.username,client.user.avatarURL)//Mrx Dev
