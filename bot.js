@@ -871,7 +871,7 @@ client.on('message', message => {
 //-
  
 client.on('message', message => {
-    if (message.content === ('*stats')) {
+    if (message.content === ('*mtaserver')) {
     message.channel.send({
         embed: new Discord.RichEmbed()
             .setAuthor(client.user.username,client.user.avatarURL)
