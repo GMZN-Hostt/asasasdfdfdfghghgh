@@ -53,8 +53,7 @@ client.on("message", message => {
 //---
 
 client.on('message' , async (message) => {  
-var prefix = "*" 
-    if(message.content.startsWith(prefix + "topinv")) { 
+    if(message.content.startsWith(prefix + 'topinv')) {
 if(message.author.bot) return;
 if(!message.channel.guild) return message.reply(' Error : ` Guild Command `'); 
   var invites = await message.guild.fetchInvites();
@@ -107,7 +106,7 @@ client.on('message', message => {
         let Mrx = new Discord.RichEmbed()
         .setColor('RANDOM')
         .setTitle('**🆕 تم ارسال رسالة لك انت فقط !**')//Mrx Dev
-        //.setThumbnail(man.avatarURL)
+        .setThumbnail(man.avatarURL)
         .addField('**🔨 مرسل الرسالة:**',man.username ,true)//Mrx Dev
         .addField('**📜 الرسالة:**',args)
         .setFooter(client.user.username,client.user.avatarURL)//Mrx Dev
