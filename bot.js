@@ -50,6 +50,32 @@ client.on("message", message => {
   } 
 }); 
 
+//---
+
+client.on('message' , async (message) => {  
+//var prefix = "?" 
+    if(message.content.startsWith(prefix + "topinv")) { 
+if(message.author.bot) return;
+if(!message.channel.guild) return message.reply(' Error : ` Guild Command `'); 
+  var invites = await message.guild.fetchInvites();
+    invites = invites.array();
+    arraySort(invites, 'uses', { reverse: true });  
+    let possibleInvites = ['User Invited |  Uses '];   
+    invites.forEach(i => {
+        if (i.uses === 0) {   
+            return;
+        }
+      possibleInvites.push(['n ' +'<@'+ i.inviter.id +'>' + '  :  ' +   i.uses]); 
+     
+    })
+    const embed = new Discord.RichEmbed()
+ .setColor('RANDOM')
+    .addField("Top Invites." ,`${(possibleInvites)}`) 
+
+    message.channel.send(embed) 
+    }
+});
+
 //-----
 
 client.on('message',async message => {
@@ -610,6 +636,7 @@ __**الأوامر العامة :**__
 ** *draw <Message> ~ لرسم اي شئ تكتبة**
 ** *bans ~ لمعرفة عدد الأشخاص المبندة من السيرفر**
 ** *report <@mention> <Reason> ~ لعمل شكوي علي احد تمنشنة ثم تكتب السبب**
+** *topinv ~ لمعرفة افضل الأِخاص الداعين اشخاص الي السيرفر**
 
 __**الأوامر الأدارية :**__
 
@@ -638,7 +665,7 @@ __**معلومات البوت :**__
 ** يوجد كود منع نشر روابط سيرفرات ديسكورد اخري**
 ** *invite ~ يرسل لك رابط اضافة البوت خاص**
 ** *support ~ يرسل لك رابط الدعم الفني ب الخاص**
-** *info ~ يعرض لك معلومات البوت**
+** *stats ~ يعرض لك معلومات البوت**
 
 __**Copyright © GMZN Host**__
 `) 
