@@ -131,28 +131,6 @@ client.on("message", message => {
 
 //---
 
-client.on('message', message => {
-    let args = message.content.split(' ').slice(2);//Mrx Dev c
-  if(!message.member.hasPermission('ADMINISTRATOR')) return      message.channel.send('**للأسف لا تمتلك صلاحية** `ADMINISTRATOR`' );
-    if(message.content.startsWith(prefix + 'dm')) {//Mrx Dev
-        let man = message.mentions.users.first();
-        let Mrx = new Discord.RichEmbed()
-        .setColor('RANDOM')
-        .setTitle('**🆕 تم ارسال رسالة اليك انت فقط!**')//Mrx Dev
-        .setThumbnail(man.avatarURL)
-        .addField('**🔨 المرسل:**',man.username ,true)//Mrx Dev
-        .addField('**📜 الرسالة:**',args)
-        .setFooter(client.user.username,client.user.avatarURL)//Mrx Dev
-        
-        if(!man) return message.reply('من فضلك منشن الشخص!');
-        if (!args) return message.reply('**من فضلك اكتب الرسالة**');
-        man.sendEmbed(Mrx).then(() => {
-            message.channel.send('✅ Successfully - نجح !');
-        }).catch(() => {
-            message.channel.send(':negative_squared_cross_mark:  هذا الشخص مقفل الخاص');
-        });
-    };
-});
 
 //-----
 
@@ -697,7 +675,6 @@ __**الأوامر العامة :**__
 
 __**الأوامر الأدارية :**__
 
-** *dm <@mention> <message> ~ ل ارسال رسالة ل شخص محدد تحدده  بعد الأمر**
 ** *bc <message> ~ لعمل برودكاست لأعضاء السيرفر**
 ** *nbc <message> ~ برودكاست او رسالة ل اعضاء السيرفر مع منشن فقط**
 ** *clear <Number> ~ لمسح الرسايل ب العدد**
