@@ -52,27 +52,27 @@ client.on("message", message => {
 
 //---
 
-client.on('message' , async (message) => {  
-    if(message.content.startsWith(prefix + 'topinv')) {
-if(message.author.bot) return;
-if(!message.channel.guild) return message.reply(' Error : ` Guild Command `'); 
-  var invites = await message.guild.fetchInvites();
-    invites = invites.array();
-    arraySort(invites, 'uses', { reverse: true });  
-    let possibleInvites = ['User Invited |  Uses '];   
-    invites.forEach(i => {
-        if (i.uses === 0) {   
-            return;
-        }
-      possibleInvites.push(['n ' +'<@'+ i.inviter.id +'>' + '  :  ' +   i.uses]); 
-     
-    })
-    const embed = new Discord.RichEmbed()
- .setColor('RANDOM')
-    .addField("Top Invites." ,`${(possibleInvites)}`) 
+client.on('message', message => {
+    let args = message.content.split(' ').slice(2);//Mrx Dev c
 
-    message.channel.send(embed) 
-    }
+    if(message.content.startsWith(prefix + 'dm')) {//Mrx Dev
+        let man = message.mentions.users.first();
+        let Mrx = new Discord.RichEmbed()
+        .setColor('RANDOM')
+        .setTitle('**🆕 تم ارسال رسالة اليك انت فقط!**')//Mrx Dev
+        .setThumbnail(man.avatarURL)
+        .addField('**🔨 المرسل:**',man.username ,true)//Mrx Dev
+        .addField('**📜 الرسالة:**',args)
+        .setFooter(client.user.username,client.user.avatarURL)//Mrx Dev
+        
+        if(!man) return message.reply('من فضلك منشن الشخص!');
+        if (!args) return message.reply('**من فضلك اكتب الرسالة**');
+        man.sendEmbed(Mrx).then(() => {
+            message.channel.send('✅ Successfully - نجح !');
+        }).catch(() => {
+            message.channel.send(':negative_squared_cross_mark:  هذا الشخص مقفل الخاص');
+        });
+    };
 });
 
 //-----
