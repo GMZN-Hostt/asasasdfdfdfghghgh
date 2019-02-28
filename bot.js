@@ -41,7 +41,7 @@ client.on('ready', () => {
 
 client.on('message',async message => {
     if(message.content.startsWith("*restart")) {
-        if(message.author.id !== "525660958761156638") return message.reply('You aren'هذا الأمر فقط لصحاب البوت !.');
+        if(message.author.id !== "525660958761156638") return message.reply('هذا الأمر فقط لصحاب البوت !.');
         message.channel.send('zZz').then(msg => {
             setTimeout(() => {
                msg.edit('zZzZz');
