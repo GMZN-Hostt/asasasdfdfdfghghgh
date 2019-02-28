@@ -98,28 +98,7 @@ client.on('message',async message => {
 
 //---
 
-client.on('message', message => {
-    let args = message.content.split(' ').slice(2);//Mrx Dev c
 
-    if(message.content.startsWith(prefix + 'dm')) {//Mrx Dev
-        let man = message.mentions.users.first();
-        let Mrx = new Discord.RichEmbed()
-        .setColor('RANDOM')
-        .setTitle('**🆕 تم ارسال رسالة لك انت فقط !**')//Mrx Dev
-        .setThumbnail(man.avatarURL)
-        .addField('**🔨 مرسل الرسالة:**',man.username ,true)//Mrx Dev
-        .addField('**📜 الرسالة:**',args)
-        .setFooter(client.user.username,client.user.avatarURL)//Mrx Dev
-        
-        if(!man) return message.reply('Please mention someone!');
-        if (!args) return message.reply('**من فضلك اكتب الرسالة**');
-        man.sendEmbed(Mrx).then(() => {
-            message.channel.send('✅ تم ارسال الرسالة بنجاح!');
-        }).catch(() => {
-            message.channel.send(':X: هذا الشخص غالق الخاص');
-        });
-    };
-});
 
 //كود الريبورت
 
