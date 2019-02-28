@@ -133,8 +133,7 @@ client.on("message", message => {
 
 client.on('message', message => {
     let args = message.content.split(' ').slice(2);//Mrx Dev c
-  if(!message.guild.member(message.author).hasPermissions('ADMINISTRATOR')) return message.reply('❌ **ليس لديك الصلاحيات الكافية**');
-
+  if(!message.member.hasPermission('ADMINISTRATOR')) return      message.channel.send('**للأسف لا تمتلك صلاحية** `ADMINISTRATOR`' );
     if(message.content.startsWith(prefix + 'dm')) {//Mrx Dev
         let man = message.mentions.users.first();
         let Mrx = new Discord.RichEmbed()
