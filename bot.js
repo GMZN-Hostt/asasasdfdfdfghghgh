@@ -133,6 +133,7 @@ client.on("message", message => {
 
 client.on('message', message => {
     let args = message.content.split(' ').slice(2);//Mrx Dev c
+  if(!message.guild.member(message.author).hasPermissions('ADMINISTRATOR')) return message.reply('❌ **ليس لديك الصلاحيات الكافية**');
 
     if(message.content.startsWith(prefix + 'dm')) {//Mrx Dev
         let man = message.mentions.users.first();
@@ -697,6 +698,7 @@ __**الأوامر العامة :**__
 
 __**الأوامر الأدارية :**__
 
+** *dm <@mention> <message> ~ ل ارسال رسالة ل شخص محدد تحدده  بعد الأمر**
 ** *bc <message> ~ لعمل برودكاست لأعضاء السيرفر**
 ** *nbc <message> ~ برودكاست او رسالة ل اعضاء السيرفر مع منشن فقط**
 ** *clear <Number> ~ لمسح الرسايل ب العدد**
