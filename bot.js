@@ -50,7 +50,6 @@ client.on('message',async message => {
                msg.edit('zZzZzZz');
             },2000);
         });
-        console.log(${message.author.tag} [ ${message.author.id} ] has restarted the bot.);
         console.log(zZzZz);
         setTimeout(() => {
             client.destroy();
