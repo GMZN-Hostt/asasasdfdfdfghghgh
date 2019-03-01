@@ -47,13 +47,13 @@ client.on('message', message => {
   let findroom = message.guild.channels.find('name', `${room}`)
   if(message.content.startsWith(prefix + "setMedia")) {
       if(!message.channel.guild) return message.reply('**هذا الأمر يستخدم داخل السيرفرات فقط !**');
-      if(!message.member.hasPermission('MANAGE_GUILD')) return message.channel.send('**للأسف ليس لديك صلاحيات** `MANAGE_CHANNELS`' );
+      if(!message.member.hasPermission('MANAGE_CHANNELS')) return message.channel.send('**للأسف ليس لديك صلاحيات** `MANAGE_CHANNELS`' );
       if(!room) return message.channel.send('من فضلك اكتب اسم الروم')
-      if(!findroom) return message.channel.send('للأسف لم القي هذا الروم')
+      if(!findroom) return message.channel.send('# اذا لم تنجح العمليه برجاء كتابة الأمر ثم اسم الروم بدون علامة')
       let embed = new Discord.RichEmbed()
-      .setTitle('**Done The MediaOnly Code Has Been Setup**')
-      .addField('Channel:', `${room}`)
-      .addField('Requested By', `${message.author}`)
+      .setTitle('**لقد نجحت العمليه وتم تفعيل الخاصيه**')
+      .addField('الروم:', `${room}`)
+      .addField('تم الأستجابه من:', `${message.author}`)
       .setThumbnail(message.author.avatarURL)
       .setFooter(`${client.user.username}`)
       message.channel.sendEmbed(embed)
@@ -71,13 +71,13 @@ client.on('message', message => {
   if(message.content.startsWith(prefix + "toggleMedia")) {
           if (!message.channel.guild) return;
 
-      if(!message.channel.guild) return message.reply('**This Command Only For Servers**');
-      if(!message.member.hasPermission('MANAGE_CHANNELS')) return message.channel.send('**Sorry But You Dont Have Permission** `MANAGE_GUILD`' );
+      if(!message.channel.guild) return message.reply('**هذا الأمر فقط في السيرفرات**');
+      if(!message.member.hasPermission('MANAGE_CHANNELS')) return message.channel.send('**للأسف ليس لديك الصلاحيات ** `MANAGE_CHANNELS`' );
       if(!pics[message.guild.id]) pics[message.guild.id] = {
         onoff: 'Off'
       }
-        if(pics[message.guild.id].onoff === 'Off') return [message.channel.send(`**The MediaCode Is __𝐎𝐍__ !**`), pics[message.guild.id].onoff = 'On']
-        if(pics[message.guild.id].onoff === 'On') return [message.channel.send(`**The MediaCode Is __𝐎𝐅𝐅__ !**`), pics[message.guild.id].onoff = 'Off']
+        if(pics[message.guild.id].onoff === 'Off') return [message.channel.send(`**خاصية روم الصور __𝐎𝐍__ !**`), pics[message.guild.id].onoff = 'On']
+        if(pics[message.guild.id].onoff === 'On') return [message.channel.send(`**خاصية روم الصور __𝐎𝐅𝐅__ !**`), pics[message.guild.id].onoff = 'Off']
         fs.writeFile("./pics.json", JSON.stringify(pics), (err) => {
           if (err) console.error(err)
           
@@ -105,7 +105,7 @@ client.on('message', message => {
   ]
    if (message.attachments.size <= 0) {
     message.delete();
-    message.channel.send(`${message.author}, This Channel For Media 🖼️ Only !`) 
+    message.channel.send(`${message.author}, هذا الروم مخصص للصور 🖼️ فقط !`) 
     .then(msg => {
       setTimeout(() => {
         msg.delete();
@@ -118,7 +118,7 @@ client.on('message', message => {
     console.log(filename);
     if(!types.some( type => filename.endsWith(type) )) {
       message.delete();
-      message.channel.send(`${message.author}, This Channel For Media 🖼️ Only !`)
+      message.channel.send(`${message.author}, هذا الروم مخصص للصور 🖼️ فقط !`)
       .then(msg => {
         setTimeout(() => {
           msg.delete();
@@ -138,7 +138,6 @@ let embed = new Discord.RichEmbed()
 .addField('Requested By', `${message.author}`)
 .setThumbnail(message.author.avatarURL)
 .setFooter(`${client.user.username}`)
-message.channel.sendEmbed(embed)
   }})
 //---
 
@@ -776,6 +775,7 @@ __**الأوامر العامة :**__
 ** *report <@mention> <Reason> ~ لعمل شكوي علي احد تمنشنة ثم تكتب السبب**
 ** *quran ~ ل قراةء القرأن ب الصفحات**
 ** *mtaserver ~ لجلب معلومات او معرفة سيرفر الحياة الواقعية الخاص ب لعبة Mta**
+** *infoMedia ~ لمعرفة روم الصور ومعلوماته**
 
 __**الأوامر الأدارية :**__
 
@@ -791,6 +791,8 @@ __**الأوامر الأدارية :**__
 ** *role <@mention> <@role> ~ ل اعطاء احد رتبه**
 ** *voto <#room> <message> ~ ل عمل تصويت ب روم محدد**
 ** *setVoice ~ ل تفعيل خاصية الفويس اون لاين**
+** *toggleMedia ~ لتفعيل خاصية الروم المخصص للصور**
+** *setMedia <Room> ~ لتحديد روم مخصص للصور**
 
 __**اخري :**__
 
