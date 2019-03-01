@@ -968,11 +968,6 @@ client.on('message', message => {
             .addField('**الأشخاص 🔮 :**' ,`[ ${client.users.size} ]` , true)
             .addField('**اسم البوت 🔰 :**' , `[ ${client.user.tag} ]` , true)
             .addField('**صاحب ومبرمج البوت 👑 :**' , `[<@525660958761156638>]` , true)
-            .addField('**مدة تشغيل البوت 🔰 :**' , `let days = Math.round(uptime * 1.1574E-8);
-    let hours = Math.round(uptime * 2.7778E-7);
-    let minutes = Math.round(uptime * 1.6667E-5);
-**Online** for \` ${days}D ${hours}H ${minutes}M\`` , true)
-
             .setFooter(message.author.username, message.author.avatarURL)
     })
 }
