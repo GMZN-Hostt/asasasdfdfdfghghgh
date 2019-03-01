@@ -136,7 +136,10 @@ let embed = new Discord.RichEmbed()
 .addField('Channel Status', `${pics[message.guild.id].onoff}`)
 .addField('Media Channel', `${pics[message.guild.id].channel}`)
 .addField('Requested By', `${message.author}`)
-
+.setThumbnail(message.author.avatarURL)
+.setFooter(`${client.user.username}`)
+message.channel.sendEmbed(embed)
+  }})
 //---
 
 client.on('message', message => {
@@ -2233,7 +2236,6 @@ if (message.mentions.users.size < 1) return message.reply("**منشن الشخص
 }
 });
  
- //te
 
 
  
