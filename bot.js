@@ -760,10 +760,10 @@ client.on('message', message => {
 
 
 //---------------------------------------------------
- client.on('message' , message => {
-if (message.content === '*help') {
-         let embed = new Discord.RichEmbed()
-.setThumbnail(message.author.avatarURL)    
+client.on('message', message => {
+            if (message.content.startsWith(prefix + "help")) {
+     let embed = new Discord.RichEmbed()
+.setThumbnail(message.author.avatarURL)
 .addField("__**الأوامر العامة - General CMDS :**__")
 .addField("           ")
 .addField("** *suggest <Suggestion> ~ يمكنك ارسال اقتراح  من هذا الامر**")
@@ -810,9 +810,7 @@ if (message.content === '*help') {
 .addField("** *stats ~ يعرض لك معلومات البوت**")
 .addField("                         ")
 .addField("__**Copyright © GMZN Host**__")
-
-
-.setColor('RANDOM')
+.setColor('#7d2dbe')
   message.author.sendEmbed(embed);
     }
 });
