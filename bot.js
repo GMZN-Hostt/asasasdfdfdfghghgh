@@ -764,9 +764,11 @@ client.on('message', message => {
 client.on("message", message => {
   var prefix = "*";
 if (message.content === "*help") {
+  let embed = new Discord.RichEmbed()
+.setThumbnail(message.author.avatarURL)    
    message.channel.send('**تم ارسالك في الخاص** :mailbox_with_mail:');
  message.author.sendMessage(`
-__**الأوامر العامة :**__
+__**الأوامر العامة - General CMDS :**__
 
 ** *suggest <Suggestion> ~ يمكنك ارسال اقتراح  من هذا الامر**
 ** *id ~ يجيب لك معلومات حسابك**
@@ -814,6 +816,8 @@ __**معلومات البوت :**__
 
 __**Copyright © GMZN Host**__
 `) 
+.setColor('RANDOM')
+  message.author.sendEmbed(embed);
  }
  });
 
