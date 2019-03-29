@@ -760,67 +760,64 @@ client.on('message', message => {
 
 
 //---------------------------------------------------
+  
+client.on('message', message => {
+if (message.content === '*help') {
+         let embed = new Discord.RichEmbed()
+ message.channel.send('**تم ارسالك في الخاص** :mailbox_with_mail:');
+.setThumbnail(message.author.avatarURL)   
+.addField("__**الأوامر العامة - General CMDS :**__")
+.addField("           ")
+.addField("** *suggest <Suggestion> ~ يمكنك ارسال اقتراح  من هذا الامر**")
+.addField("** *id ~ يجيب لك معلومات حسابك**")
+.addField("** *server ~يعرض لك معلومات عن السيرفر**")
+.addField("** *avatar ~ لعرض صورتك او صورة حد تمنشنو**")
+.addField("** *time ~ لمعرفة الساعه في مكه المكرمه او مصر او الامارات**")
+.addField("** *new ~ لعمل روم مساعده او استفسار مبينك انت والادمنيه**")
+.addField("** *draw <Message> ~ لرسم اي شئ تكتبة**")
+.addField("** *bans ~ لمعرفة عدد الأشخاص المبندة من السيرفر**")
+.addField("** *report <@mention> <Reason> ~ لعمل شكوي علي احد تمنشنة ثم تكتب السبب**")
+.addField("** *quran ~ ل قراةء القرأن ب الصفحات**")
+.addField("** *infoMedia ~ لمعرفة روم الصور ومعلوماته**")
+.addField("                             ")
+.addField("__**الأوامر الأدارية :**__")
+.addField("            ")
+.addField("** *bc <message> ~ لعمل برودكاست لأعضاء السيرفر**")
+.addField("** *nbc <message> ~ برودكاست او رسالة ل اعضاء السيرفر مع منشن فقط**")
+.addField("** *clear <Number> ~ لمسح الرسايل ب العدد**")
+.addField("** *kick <@mention> ~ ل طرد احد من السيرفر**")
+.addField("** *ban <@mention> ~ ل تبنيد احد من السيرفر**")
+.addField("** *mute <@mention> <Reason> ~ لعمل ميوت كتابي لحد**")
+.addField("** *unmute <@mention> ~ لفك الميوت الكتابي**")
+.addField("** *cchat ~ ل تقفيل الشات**")
+.addField("** *unchat ~ ل فتح الشات**")
+.addField("** *role <@mention> <@role> ~ ل اعطاء احد رتبه**")
+.addField("** *voto <#room> <message> ~ ل عمل تصويت ب روم محدد**")
+.addField("** *setVoice ~ ل تفعيل خاصية الفويس اون لاين**")
+.addField("** *toggleMedia ~ لتفعيل خاصية الروم المخصص للصور**")
+.addField("** *setMedia <Room> ~ لتحديد روم مخصص للصور**")
+.addField("            ")
+.addField("__**اخري :**__")
+.addField("                  ")
+.addField("** يجب علي اونر السيرفر عمل روم ب اسم suggestions لكي الأقتراحا تيجي فيه .**")
+.addField("** يجب علي اونر السيرفر عمل رتبة ب اسم Support Team واعطاء صلاحية الادمنستوريتر لها لكي يعمل كود التيكت .**")
+.addField("** Welcome ~ لعمل ترحيب ب روم مخصص سوي روم ب الاسم ده .**")
+.addField("** لتفعيل خاصية الشكاوي او الريبورتات قوم ب عمل روم ب اسم reports .**")
+.addField("** لتفعيل خاصية اللوق قم بأنشاء روم اسمه log وسيتم تفعيل الخاصيه تلقائي**")
+.addField("                        ")
+.addField("__**معلومات البوت :**__")
+.addField("** يوجد كود منع نشر روابط سيرفرات ديسكورد اخري**")
+.addField("** *invite ~ يرسل لك رابط اضافة البوت خاص**")
+.addField("** *support ~ يرسل لك رابط الدعم الفني ب الخاص**")
+.addField("** *stats ~ يعرض لك معلومات البوت**")
+.addField("                         ")
+.addField("__**Copyright © GMZN Host**__")
 
-client.on("message", message => {
-  var prefix = "*";
-if (message.content === "*help") {
-  let embed = new Discord.RichEmbed()
-.setThumbnail(message.author.avatarURL)    
-   message.channel.send('**تم ارسالك في الخاص** :mailbox_with_mail:');
- message.author.sendMessage(`
-__**الأوامر العامة - General CMDS :**__
 
-** *suggest <Suggestion> ~ يمكنك ارسال اقتراح  من هذا الامر**
-** *id ~ يجيب لك معلومات حسابك**
-** *server ~يعرض لك معلومات عن السيرفر**
-** *avatar ~ لعرض صورتك او صورة حد تمنشنو**
-** *time ~ لمعرفة الساعه في مكه المكرمه او مصر او الامارات**
-** *new ~ لعمل روم مساعده او استفسار مبينك انت والادمنيه**
-** *draw <Message> ~ لرسم اي شئ تكتبة**
-** *bans ~ لمعرفة عدد الأشخاص المبندة من السيرفر**
-** *report <@mention> <Reason> ~ لعمل شكوي علي احد تمنشنة ثم تكتب السبب**
-** *quran ~ ل قراةء القرأن ب الصفحات**
-** *mtaserver ~ لجلب معلومات او معرفة سيرفر الحياة الواقعية الخاص ب لعبة Mta**
-** *infoMedia ~ لمعرفة روم الصور ومعلوماته**
-
-__**الأوامر الأدارية :**__
-
-** *bc <message> ~ لعمل برودكاست لأعضاء السيرفر**
-** *nbc <message> ~ برودكاست او رسالة ل اعضاء السيرفر مع منشن فقط**
-** *clear <Number> ~ لمسح الرسايل ب العدد**
-** *kick <@mention> ~ ل طرد احد من السيرفر**
-** *ban <@mention> ~ ل تبنيد احد من السيرفر**
-** *mute <@mention> <Reason> ~ لعمل ميوت كتابي لحد**
-** *unmute <@mention> ~ لفك الميوت الكتابي**
-** *cchat ~ ل تقفيل الشات**
-** *unchat ~ ل فتح الشات**
-** *role <@mention> <@role> ~ ل اعطاء احد رتبه**
-** *voto <#room> <message> ~ ل عمل تصويت ب روم محدد**
-** *setVoice ~ ل تفعيل خاصية الفويس اون لاين**
-** *toggleMedia ~ لتفعيل خاصية الروم المخصص للصور**
-** *setMedia <Room> ~ لتحديد روم مخصص للصور**
-
-__**اخري :**__
-
-** يجب علي اونر السيرفر عمل روم ب اسم suggestions لكي الأقتراحا تيجي فيه .**
-** يجب علي اونر السيرفر عمل رتبة ب اسم Support Team واعطاء صلاحية الادمنستوريتر لها لكي يعمل كود التيكت .**
-** Welcome ~ لعمل ترحيب ب روم مخصص سوي روم ب الاسم ده .**
-** لتفعيل خاصية الشكاوي او الريبورتات قوم ب عمل روم ب اسم reports .**
-** لتفعيل خاصية اللوق قم بأنشاء روم اسمه log وسيتم تفعيل الخاصيه تلقائي**
-
-__**معلومات البوت :**__
-** يوجد كود منع نشر روابط سيرفرات ديسكورد اخري**
-** *invite ~ يرسل لك رابط اضافة البوت خاص**
-** *support ~ يرسل لك رابط الدعم الفني ب الخاص**
-** *stats ~ يعرض لك معلومات البوت**
-
-__**Copyright © GMZN Host**__
-`) 
 .setColor('RANDOM')
   message.author.sendEmbed(embed);
- }
- });
-
+    }
+});
  //------------------------------------------------------------
 
 //بداية كود اليجيب لك عدد الاعضاء المبنده من السيرفر
