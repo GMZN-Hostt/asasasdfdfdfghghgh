@@ -454,7 +454,7 @@ client.on('ready', function(){
             j = -1;
         }
         i = i+j;
-        client.user.setActivity(setGame[i],{type: "http://twitch.tv/ldk"});
+        client.user.setActivity(setGame[i],{type: "STREAMING"});
     }, ms);
  
  
