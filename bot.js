@@ -443,7 +443,7 @@ client.on('message', message => {
 
 client.on('ready', function(){
  var ms = 7000;
-    var setGame = [`${client.guilds.size} Servers`,`${client.users.size} Users`,`${prefix}help | ${prefix}invite`];
+  var setGame = [`${prefix}help | ${prefix}invite`,`${client.guilds.size} Servers`,`${client.users.size} Members`];
     var i = -1;
     var j = 0;
     setInterval(function (){
@@ -454,7 +454,7 @@ client.on('ready', function(){
             j = -1;
         }
         i = i+j;
-        client.user.setActivity(setGame[i],{type: "WATCHING"});
+        client.user.setActivity(setGame[i],{type: "http://twitch.tv/ldk"});
     }, ms);
  
  
@@ -979,43 +979,6 @@ client.on('message', message => {
 
 //-
  
-client.on('message', message => {
-    if (message.content === ('*mtaserver')) {
-    message.channel.send({
-        embed: new Discord.RichEmbed()
-            .setAuthor(client.user.username,client.user.avatarURL)
-            .setThumbnail(client.user.avatarURL)
-            .setColor('RANDOM')
-            .addField('**اسم السيرفر 📚 :**' , `**[ GMZN Community ] [ Roleplay , L.S ] [ حياة واقعية ] [ مجتمع جمزن] [GMZN]**	` , true)
-            .addField('**الحالة :**' , `**Online - مقفل ب باسورد بسبب الصيانة**` , true)
-            .addField('**اقصي عدد اللاعبين :**' , `**120**` , true)
-            .addField('**الدعم الفني :**' , `**https://discord.gg/4pEh3qx , https://discord.gg/RjAvkAc**` , true)
-            .addField('**النوع :**' , `__**Roleplay - لعب الأدوار**__` , true)
-            .addField('**صاحب ومبرمج السيرفر 👑 :**' , `[<@525660958761156638>]` , true)
-            .setFooter(message.author.username, message.author.avatarURL)
-    })
-}
-});
-
-//
-
-client.on('message', message => {
-    if (message.content === ('*mtaserver')) {
-    message.channel.send({
-        embed: new Discord.RichEmbed()
-            .setAuthor(client.user.username,client.user.avatarURL)
-            .setThumbnail(client.user.avatarURL)
-            .setColor('RANDOM')
-            .addField('**اسم السيرفر 📚 :**' , `**[ GMZN Community ] [ G.C ] [ هجولة وحرب ] [ مجتمع جمزن] [GMZN]**	` , true)
-            .addField('**الحالة :**' , `**Offline**` , true)
-            .addField('**اقصي عدد اللاعبين :**' , `**120**` , true)
-            .addField('**الدعم الفني :**' , `**https://discord.gg/4pEh3qx , https://discord.gg/RjAvkAc**` , true)
-            .addField('**النوع :**' , `__**هجولة وحرب**__` , true)
-            .addField('**صاحب ومبرمج السيرفر 👑 :**' , `[<@525660958761156638>]` , true)
-            .setFooter(message.author.username, message.author.avatarURL)
-    })
-}
-});
 
 
 //بعض الاكواد الاداريه اولهم كود مسح الشات
