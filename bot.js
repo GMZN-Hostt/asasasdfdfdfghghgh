@@ -760,12 +760,10 @@ client.on('message', message => {
 
 
 //---------------------------------------------------
-  
-client.on('message', message => {
+ client.on('message' , message => {
 if (message.content === '*help') {
          let embed = new Discord.RichEmbed()
- message.channel.send('**تم ارسالك في الخاص** :mailbox_with_mail:');
-.setThumbnail(message.author.avatarURL)   
+.setThumbnail(message.author.avatarURL)    
 .addField("__**الأوامر العامة - General CMDS :**__")
 .addField("           ")
 .addField("** *suggest <Suggestion> ~ يمكنك ارسال اقتراح  من هذا الامر**")
