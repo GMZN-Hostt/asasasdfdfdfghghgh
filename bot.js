@@ -454,7 +454,7 @@ client.on('ready', function(){
             j = -1;
         }
         i = i+j;
-        client.user.setActivity(setGame[i],{type: "STREAMING"});
+        client.user.setGame(setGame[i],`http://www.twitch.tv/S-F`);
     }, ms);
  
  
